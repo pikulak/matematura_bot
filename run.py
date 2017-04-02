@@ -1,5 +1,3 @@
-#!C:/Python34/python.exe
-
 import requests
 from bs4 import BeautifulSoup
 from time import sleep
@@ -13,9 +11,10 @@ my_apps_url = "https://matematura.gwo.pl/users/myGwo/tab:my_apps/subtab:7"
 exam_url = "https://matematura.apps.gwo.pl/app_data/c6ba7e4cd9f3/examSets/testAll"
 save_all_url = "https://matematura.apps.gwo.pl/app_data/c6ba7e4cd9f3/examSets/saveAll"
 exam_repeat_url = "https://matematura.apps.gwo.pl/app_data/c6ba7e4cd9f3/examSets/setRepeat/1"
+exam_delete_url = "https://matematura.apps.gwo.pl/app_data/c6ba7e4cd9f3/examSets/deleteSet/"
 login_data = {
-	"login": "LO3iuczen17",
-	"password": "SECURED",
+	"login": "",
+	"password": "",
 	"moveon": "/"}
 
 session = requests.Session()
@@ -100,9 +99,12 @@ def do_exam(session):
 def repeat_exam(session):
 	session.get(exam_repeat_url)
 
+def delete_exam(session):
+	session.get(exam_delete_url)
+
 login(session)
 go_to_list_exams(session)
-for i in range(5):
+for i in range(1000):
 	print("Egzamin nr:", i + 1)
 	generate_new_exam(session)
 	finish_exam(session)
